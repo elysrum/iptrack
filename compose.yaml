@@ -1,0 +1,16 @@
+services:
+  iptrack:
+    build: .
+    restart: unless-stopped
+    environment:
+      PUSHOVER_TOKEN: ${PUSHOVER_TOKEN}
+      PUSHOVER_USER: ${PUSHOVER_USER}
+      IPTRACK_DAEMON: "true"
+      IPTRACK_INTERVAL: ${IPTRACK_INTERVAL:-5m}
+      IPTRACK_STATE_FILE: /data/ip
+      IPTRACK_TITLE: ${IPTRACK_TITLE:-IP Address Changed}
+    volumes:
+      - iptrack-data:/data
+
+volumes:
+  iptrack-data:
