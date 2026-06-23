@@ -14,9 +14,12 @@ import (
 	"github.com/spf13/viper"
 )
 
+// osExit is a variable so tests can intercept calls to os.Exit.
+var osExit = os.Exit
+
 func main() {
 	if err := rootCmd.Execute(); err != nil {
-		os.Exit(2)
+		osExit(2)
 	}
 }
 
@@ -104,7 +107,7 @@ func runOnce(token, user, title, stateFile string) error {
 	if err := writeIP(stateFile, currentIP); err != nil {
 		return err
 	}
-	os.Exit(1)
+	osExit(1)
 	return nil
 }
 
