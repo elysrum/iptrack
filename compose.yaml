@@ -10,6 +10,11 @@ services:
       IPTRACK_STATE_FILE: /data/ip
       IPTRACK_TITLE: ${IPTRACK_TITLE:-IP Address Changed}
       TZ: Europe/London
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     volumes:
       - iptrack-data:/data
 
