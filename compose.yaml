@@ -9,6 +9,7 @@ services:
       IPTRACK_INTERVAL: ${IPTRACK_INTERVAL:-5m}
       IPTRACK_STATE_FILE: /data/ip
       IPTRACK_TITLE: ${IPTRACK_TITLE:-IP Address Changed}
+      TZ: Europe/London
     volumes:
       - iptrack-data:/data
 
