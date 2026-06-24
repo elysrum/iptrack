@@ -34,6 +34,19 @@ Single `main` package, four files:
 - **`pushover.go`** — `notify(token, user, title, message)`: POST to Pushover API
 - **`store.go`** — `readIP(path)` / `writeIP(path, ip)`: plain-text state file
 
+## Docker
+
+`Dockerfile` builds a minimal Alpine image with `ca-certificates` and `tzdata`.
+`compose.yaml` runs in daemon mode with:
+- `TZ: Europe/London` — logs in local time (tzdata must be present in the image)
+- Log rotation: 3 × 10 MB JSON files (`max-size: 10m`, `max-file: 3`)
+
+```bash
+docker compose build    # rebuild after code or Dockerfile changes
+docker compose up -d    # start
+docker compose logs -f  # follow logs
+```
+
 ## Behaviour
 
 **One-shot mode** (default, no `--daemon`):
